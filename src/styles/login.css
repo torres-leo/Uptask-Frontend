@@ -1,0 +1,17 @@
+@layer components {
+	.Login-group {
+		@apply mb-5;
+	}
+
+	.Login-label {
+		@apply inline-block text-lg text-white tracking-wider;
+	}
+
+	.Login-submit {
+		@apply bg-sky-600 text-white font-bold hover:bg-sky-600/80 uppercase transition-all;
+	}
+
+	.Login-link {
+		@apply block text-center my-5 text-slate-400 text-sm hover:text-yellow-500 transition-colors;
+	}
+}

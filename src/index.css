@@ -1,0 +1,16 @@
+@import './styles/animation.css';
+@import './styles/form.css';
+@import './styles/input.css';
+@import './styles/layout.css';
+@import './styles/login.css';
+@import './styles/NewPassword.css';
+@import './styles/scroll.css';
+@import './styles/text.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	scrollbar-gutter: stable both-edges;
+}
