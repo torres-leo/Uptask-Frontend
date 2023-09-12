@@ -19,7 +19,6 @@ InputFormik.propTypes = {
 	name: PropTypes.string.isRequired,
 	customClass: PropTypes.string,
 	value: PropTypes.string || PropTypes.number,
-	onChange: PropTypes.func,
 	placeholder: PropTypes.string,
 	type: PropTypes.oneOf([
 		'button',

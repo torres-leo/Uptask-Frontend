@@ -8,10 +8,10 @@
 	}
 
 	.Login-submit {
-		@apply bg-sky-600 text-white font-bold hover:bg-sky-600/80 uppercase transition-all;
+		@apply bg-sky-600 text-white font-bold hover:bg-sky-600/80 uppercase transition-all w-3/6;
 	}
 
 	.Login-link {
-		@apply block text-center my-5 text-slate-400 text-sm hover:text-yellow-500 transition-colors;
+		@apply block text-center my-5 text-slate-400 text-sm hover:text-yellow-500 transition-all;
 	}
 }

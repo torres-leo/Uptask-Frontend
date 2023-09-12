@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,12 +10,19 @@ import { useState } from 'react';
 import Message from '../components/InputFormik/Message';
 import axiosInstance from '../config/axios';
 import { pages } from '../components/helpers/Links';
+import { SwalAlert } from '../components/helpers/SwalAlert';
+import useNavigateTo from '../hooks/useNavigation';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { flushSync } from 'react-dom';
+('../hooks/useDocumentTitle');
 
 const Signup = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showCNPassword, setShowCNPassword] = useState(false);
+	useDocumentTitle('UpTask - Sign Up');
 
-	const navigation = useNavigate();
+	const navigate = useNavigate();
+	const navigateTo = useNavigateTo();
 
 	const schema = Yup.object({
 		username: Yup.string().required('*Name is required').max(50, 'Limit has been reached(50)'),
@@ -40,56 +46,36 @@ const Signup = () => {
 	const handleSubmit = async (values, { resetForm }) => {
 		const { username, email, password } = values;
 
+		const settings = {
+			icon: '',
+			title: '',
+			text: '',
+			preConfirm: null,
+		};
+
 		try {
 			const response = await axiosInstance.post('/users', { name: username, email, password });
 			const {
 				data: { msg },
 			} = response;
 
-			resetForm({ values: '' });
-			showSuccessMessage(msg);
+			settings.icon = 'success';
+			settings.text = `${msg}. Check your email to verify your account.`;
+			settings.preConfirm = () => {
+				flushSync(() => {
+					navigate(pages.login);
+				});
+				resetForm({ values: '' });
+			};
+
+			SwalAlert(settings);
 		} catch (error) {
-			showErrorMessage(error.response.data.msg);
+			settings.icon = 'error';
+			settings.title = 'Oops...';
+			settings.text = `${error.response.data.msg}. Try with other email.` ?? error.message;
+
+			SwalAlert(settings, false);
 		}
-	};
-
-	const showSuccessMessage = (text) => {
-		Swal.fire({
-			icon: 'success',
-			title: '',
-			text: text,
-			background: '#1a1a1a',
-			color: 'white',
-			confirmButtonColor: '#2bd728',
-			width: 450,
-			showClass: {
-				popup: 'animate__animated animate__fadeIn animate__faster',
-			},
-			hideClass: {
-				popup: 'animate__animated animate__fadeOut animate__faster',
-			},
-			preConfirm: () => {
-				navigation(pages.login);
-			},
-		});
-	};
-
-	const showErrorMessage = (text) => {
-		Swal.fire({
-			icon: 'error',
-			title: 'Oops...',
-			text: text,
-			background: '#1a1a1a',
-			color: 'white',
-			confirmButtonColor: '#db4e4e',
-			width: 450,
-			showClass: {
-				popup: 'animate__animated animate__fadeIn animate__faster',
-			},
-			hideClass: {
-				popup: 'animate__animated animate__fadeOut animate__faster',
-			},
-		});
 	};
 
 	const handleShowPassword = () => {
@@ -111,7 +97,7 @@ const Signup = () => {
 						<label htmlFor='username' className='Login-label'>
 							Name
 						</label>
-						<InputFormik id='username' name='username' placeholder='Pablo' type='text' />
+						<InputFormik id='username' name='username' type='text' />
 						<Message name='username' />
 					</div>
 
@@ -170,12 +156,10 @@ const Signup = () => {
 			</div>
 
 			<nav className=''>
-				<p className='Login-link'>
-					You already have an account?{' '}
-					<Link to='/' className='underline underline-offset-4 hover:text-yellow-500 transition-colors'>
-						Sign In!
-					</Link>
-				</p>
+				{/* <Link to='/' className='Login-link'> */}
+				<Link onClick={() => navigateTo('/')} className='Login-link'>
+					You already have an account? <span className='underline underline-offset-4 '>Sign In!</span>
+				</Link>
 			</nav>
 		</div>
 	);

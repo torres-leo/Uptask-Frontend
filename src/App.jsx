@@ -7,8 +7,6 @@ import NewPassword from './pages/NewPassword';
 import ResetPassword from './pages/ResetPassword';
 import Signup from './pages/Signup';
 
-// import 'sweetalert2/src/sweetalert2.scss';
-
 function App() {
 	return (
 		<BrowserRouter>
@@ -18,7 +16,7 @@ function App() {
 					<Route path='signup' element={<Signup />} />
 					<Route path='reset-password' element={<ResetPassword />} />
 					<Route path='reset-password/:token' element={<NewPassword />} />
-					<Route path='authenticate/:id' element={<Authenticate />} />
+					<Route path='authenticate/:token' element={<Authenticate />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

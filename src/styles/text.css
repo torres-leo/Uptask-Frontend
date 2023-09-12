@@ -4,7 +4,7 @@
 	}
 
 	.title-sub {
-		@apply font-medium tracking-widest text-4xl text-center text-gray-200;
+		@apply font-medium tracking-widest text-5xl text-center text-gray-200;
 	}
 
 	.subtitle-b-b {
