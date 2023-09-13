@@ -13,11 +13,13 @@ import useDocumentTitle from '../hooks/useDocumentTitle';
 import axiosInstance from '../config/axios';
 import Message from '../components/InputFormik/Message';
 import { SwalAlert } from '../components/helpers/SwalAlert';
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	useDocumentTitle('UpTask - Sign In');
 	const navigateTo = useNavigateTo();
+	const { setAuth } = useAuth();
 
 	const schema = Yup.object({
 		email: Yup.string().required('*Email is required').email('*Must be a valid email'),
@@ -44,6 +46,8 @@ const Login = () => {
 		try {
 			const { data } = await axiosInstance.post('/users/login', values);
 			localStorage.setItem('uptask_token', data.user.token);
+			setAuth(data.user.token);
+			navigateTo('/projects');
 		} catch (error) {
 			settings.icon = 'error';
 			settings.title = 'Oops...';
