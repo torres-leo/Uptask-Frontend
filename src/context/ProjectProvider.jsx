@@ -1,7 +1,7 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import Proptypes from 'prop-types';
-import { pages } from '../components/helpers/Links';
-import { SwalAlert } from '../components/helpers/SwalAlert';
+import { pages } from '../helpers/Links';
+import { SwalAlert } from '../helpers/SwalAlert';
 import axiosInstance from '../config/axios';
 import useNavigateTo from '../hooks/useNavigation';
 
@@ -18,6 +18,29 @@ const ProjectProvider = ({ children }) => {
 		text: '',
 		preConfirm: null,
 	};
+
+	useEffect(() => {
+		const getProjects = async () => {
+			try {
+				const token = localStorage.getItem('uptask_token');
+				if (!token) return;
+
+				const config = {
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+				};
+
+				const { data } = await axiosInstance.get('/projects', config);
+				setProjects(data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getProjects();
+	}, []);
 
 	const createProject = async (project) => {
 		try {

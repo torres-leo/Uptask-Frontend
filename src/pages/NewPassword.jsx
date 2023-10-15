@@ -10,7 +10,7 @@ import Input from '../components/Input/Index';
 import InputFormik from '../components/InputFormik/Index';
 import Message from '../components/InputFormik/Message';
 import axiosInstance from '../config/axios';
-import { SwalAlert } from '../components/helpers/SwalAlert';
+import { SwalAlert } from '../helpers/SwalAlert';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const NewPassword = () => {

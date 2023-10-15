@@ -12,7 +12,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle';
 ('../hooks/useDocumentTitle');
 import axiosInstance from '../config/axios';
 import Message from '../components/InputFormik/Message';
-import { SwalAlert } from '../components/helpers/SwalAlert';
+import { SwalAlert } from '../helpers/SwalAlert';
 import useAuth from '../hooks/useAuth';
 
 const Login = () => {

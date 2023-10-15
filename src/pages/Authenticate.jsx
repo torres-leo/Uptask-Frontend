@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { pages } from '../components/helpers/Links';
-import { SwalAlert } from '../components/helpers/SwalAlert';
+import { pages } from '../helpers/Links';
+import { SwalAlert } from '../helpers/SwalAlert';
 import axiosInstance from '../config/axios';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import useNavigateTo from '../hooks/useNavigation';
