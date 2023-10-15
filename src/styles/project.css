@@ -1,0 +1,5 @@
+@layer components {
+	.Project-Form {
+		@apply bg-white/20 rounded-lg border w-2/3 xl:w-1/2;
+	}
+}

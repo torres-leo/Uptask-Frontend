@@ -47,7 +47,7 @@ const Login = () => {
 			const { data } = await axiosInstance.post('/users/login', values);
 			localStorage.setItem('uptask_token', data.user.token);
 			setAuth(data.user.token);
-			navigateTo('/projects');
+			window.location.href = '/projects';
 		} catch (error) {
 			settings.icon = 'error';
 			settings.title = 'Oops...';
@@ -64,16 +64,16 @@ const Login = () => {
 			</h1>
 			<div className='mt-10 border rounded-md px-4 py-5'>
 				<FormikForm initialValues={initialValues} schema={schema} onSubmit={handleSubmit}>
-					<div className='Login-group'>
-						<label htmlFor='email' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='email' className='Form-label'>
 							Email
 						</label>
 						<InputFormik id='email' name='email' placeholder='example@example.com' type='email' />
 						<Message name='email' />
 					</div>
 
-					<div className='Login-group'>
-						<label htmlFor='password' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='password' className='Form-label'>
 							Password
 						</label>
 						<div className='relative flex justify-between'>
@@ -84,24 +84,21 @@ const Login = () => {
 								type={showPassword ? 'text' : 'password'}
 							/>
 							<FontAwesomeIcon
-								// className='Formik-password icon'
-								className={`Formik-password icon transition-opacity `}
+								className='Formik-password icon'
 								onClick={handleShowPassword}
 								icon={showPassword ? faEye : faEyeSlash}
 							/>
 						</div>
 					</div>
 
-					<Input type='submit' value='Log In' customClass='Login-submit' />
+					<Input type='submit' value='Log In' customClass='Form-submit bg-sky-600' />
 				</FormikForm>
 			</div>
 
 			<nav className='lg:flex lg:justify-between'>
-				{/* <Link className='Login-link' to='signup'> */}
 				<Link className='Login-link' onClick={() => navigateTo('signup')}>
 					You do not have an account? <span className='underline underline-offset-4'>Sign up!</span>
 				</Link>
-				{/* <Link className='Login-link' to='reset-password'> */}
 				<Link className='Login-link' onClick={() => navigateTo('reset-password')}>
 					Forget my password <FontAwesomeIcon icon={faLock} />
 				</Link>

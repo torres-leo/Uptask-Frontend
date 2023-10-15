@@ -1,4 +1,16 @@
 @layer components {
+	.Form-group {
+		@apply mb-3;
+	}
+
+	.Form-submit {
+		@apply text-white font-bold hover:bg-opacity-80 uppercase transition-all w-3/6;
+	}
+
+	.Form-label {
+		@apply inline-block text-lg text-white tracking-wider;
+	}
+
 	.Formik-input {
 		@apply mt-2 p-2 rounded-md text-gray-800 outline-none placeholder:text-zinc-500/80 w-full focus:ring-[3px] focus:ring-yellow-600;
 	}

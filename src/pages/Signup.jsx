@@ -93,24 +93,24 @@ const Signup = () => {
 			</h1>
 			<div className='mt-10 border rounded-md px-4 py-5'>
 				<FormikForm initialValues={initialValues} schema={schema} onSubmit={handleSubmit}>
-					<div className='Login-group'>
-						<label htmlFor='username' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='username' className='Form-label'>
 							Name
 						</label>
 						<InputFormik id='username' name='username' type='text' />
 						<Message name='username' />
 					</div>
 
-					<div className='Login-group'>
-						<label htmlFor='email' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='email' className='Form-label'>
 							Email
 						</label>
 						<InputFormik id='email' name='email' placeholder='example@example.com' type='email' />
 						<Message name='email' />
 					</div>
 
-					<div className='Login-group'>
-						<label htmlFor='password' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='password' className='Form-label'>
 							Password
 						</label>
 						<div className='relative flex justify-between'>
@@ -130,8 +130,8 @@ const Signup = () => {
 						<Message name='password' />
 					</div>
 
-					<div className='Login-group'>
-						<label htmlFor='cnpassword' className='Login-label'>
+					<div className='Form-group'>
+						<label htmlFor='cnpassword' className='Form-label'>
 							Confirm Password
 						</label>
 						<div className='relative flex justify-between'>
@@ -151,7 +151,7 @@ const Signup = () => {
 						<Message name='cnpassword' />
 					</div>
 
-					<Input type='submit' value='Sign Up' customClass='Login-submit' />
+					<Input type='submit' value='Sign Up' customClass='Form-submit bg-sky-600' />
 				</FormikForm>
 			</div>
 

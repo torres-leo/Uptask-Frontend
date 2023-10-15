@@ -1,9 +1,13 @@
 @import './styles/animation.css';
+@import './styles/button.css';
 @import './styles/form.css';
+@import './styles/header.css';
 @import './styles/input.css';
 @import './styles/layout.css';
 @import './styles/login.css';
+@import './styles/project.css';
 @import './styles/scroll.css';
+@import './styles/sidebar.css';
 @import './styles/text.css';
 
 @tailwind base;

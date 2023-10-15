@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import axiosInstance from '../config/axios';
 import useNavigateTo from '../hooks/useNavigation';
@@ -6,6 +7,9 @@ import useNavigateTo from '../hooks/useNavigation';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+	const location = useLocation();
+	const path = location.pathname;
+
 	const [auth, setAuth] = useState({});
 	const [loading, setLoading] = useState(true);
 	const navigateTo = useNavigateTo();
@@ -29,7 +33,10 @@ const AuthProvider = ({ children }) => {
 			try {
 				const { data } = await axiosInstance('/users/profile', config);
 				setAuth(data.user);
-				navigateTo('/projects');
+
+				if (path === '/') {
+					navigateTo('/projects');
+				}
 			} catch (error) {
 				setAuth({});
 				console.log(error);
@@ -39,7 +46,7 @@ const AuthProvider = ({ children }) => {
 		};
 
 		userAuthenticated();
-	}, []);
+	}, [path]);
 
 	return <AuthContext.Provider value={{ auth, setAuth, loading }}>{children}</AuthContext.Provider>;
 };

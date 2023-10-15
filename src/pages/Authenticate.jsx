@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { flushSync } from 'react-dom';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { pages } from '../components/helpers/Links';
+import { SwalAlert } from '../components/helpers/SwalAlert';
 import axiosInstance from '../config/axios';
 import useDocumentTitle from '../hooks/useDocumentTitle';
-import { SwalAlert } from '../components/helpers/SwalAlert';
+import useNavigateTo from '../hooks/useNavigation';
 
 const Authenticate = () => {
 	const { token } = useParams();
-	const navigate = useNavigate();
+	const navigateTo = useNavigateTo();
 	useDocumentTitle('UpTask - Authenticate Account');
 
 	const settings = {
@@ -31,9 +31,7 @@ const Authenticate = () => {
 				settings.title = '';
 				settings.text = msg;
 				settings.preConfirm = () => {
-					flushSync(() => {
-						navigate(pages.login);
-					});
+					navigateTo(pages.login);
 				};
 
 				SwalAlert(settings, true);
@@ -42,9 +40,7 @@ const Authenticate = () => {
 				settings.title = 'Oops...';
 				settings.text = error.response.data.msg ?? error.message;
 				settings.preConfirm = () => {
-					flushSync(() => {
-						navigate(pages.login);
-					});
+					navigateTo(pages.login);
 				};
 
 				SwalAlert(settings, false);

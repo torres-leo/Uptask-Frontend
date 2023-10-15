@@ -69,7 +69,7 @@ const ResetPassword = () => {
 						<Message name='email' />
 					</div>
 
-					<Input type='submit' value='Send' customClass='Login-submit tracking-widest' />
+					<Input type='submit' value='Send' customClass='Form-submit tracking-widest bg-sky-600' />
 				</FormikForm>
 			</div>
 
